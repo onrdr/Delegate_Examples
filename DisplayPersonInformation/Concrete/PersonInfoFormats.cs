@@ -9,20 +9,14 @@ namespace DisplayPersonInformation.Concrete
         public PersonInfoFormatFunc GetSelectedPersonInfoFormat(int validOption)
         {
 
-            switch (validOption - 1)
+            return (validOption - 1) switch
             {
-                case (int)PersonInfoFormatsEnum.FullName:
-                    return GetFullName;
-                case (int)PersonInfoFormatsEnum.FullNameTckn:
-                    return GetFullName_Tckn;
-                case (int)PersonInfoFormatsEnum.FullNameBirthDay:
-                    return GetFullName_BirthDay;
-                case (int)PersonInfoFormatsEnum.FullNamePlaceOfBirth:
-                    return GetFullName_PlaceOfBirth;
-                default:
-                    Console.WriteLine("Not a Valid Option => Displaying Basic Info");
-                    return null;
-            }
+                (int)PersonInfoFormatsEnum.FullName => GetFullName,
+                (int)PersonInfoFormatsEnum.FullNameTckn => GetFullName_Tckn,
+                (int)PersonInfoFormatsEnum.FullNameBirthDay => GetFullName_BirthDay,
+                (int)PersonInfoFormatsEnum.FullNamePlaceOfBirth => GetFullName_PlaceOfBirth,
+                _ => null,
+            };
         }
 
         string GetFullName(Person person)
